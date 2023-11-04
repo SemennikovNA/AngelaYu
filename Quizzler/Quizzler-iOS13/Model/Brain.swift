@@ -1,23 +1,17 @@
 //
-//  ViewController.swift
+//  Brain.swift
 //  Quizzler-iOS13
 //
-//  Created by Angela Yu on 12/07/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
+//  Created by Nikita on 04.11.2023.
+//  Copyright © 2023 The App Brewery. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class ViewController: UIViewController {
-    
-    //MARK: - IBOutlet's
-    
-    @IBOutlet weak var questLabel: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
-    @IBOutlet weak var progressBar: UIProgressView!
+struct Brain {
     
     //MARK: - Properties
+    
     var questionCount = 0
     let questions = [
         Quest(q: "A slug's blood is green.", a: "True"),
@@ -32,35 +26,35 @@ class ViewController: UIViewController {
         Quest(q: "The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.", a: "False"),
         Quest(q: "No piece of square dry paper can be folded in half more than 7 times.", a: "False"),
         Quest(q: "Chocolate affects a dog's heart and nervous system; a few ounces are enough to kill a small dog.", a: "True")
-
+        
     ]
-    
-    //MARK: - Life cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        updateUI()
-    }
     
     //MARK: - Methods
     
-    func updateUI() {
-        questLabel.text = questions[questionCount].question
-        
-    }
-
-    //MARK: - IBAction's
-    
-    @IBAction func answerButtonsPressed(_ sender: UIButton) {
-        let userAnswer = sender.currentTitle
-        let actualAnswer = questions[questionCount].answer
-        
-        if questionCount + 1 < questions.count {
-            questionCount += 1
+    func checkAnswer(answer userAnswer: String) -> Bool  {
+        if userAnswer == questions[questionCount].answer {
+            return true
         } else {
-            questionCount = 0
+            return false
         }
-        updateUI()
+    }
+    
+    func getQuestText() -> String {
+        let  text: String = questions[questionCount].question
+        return text
+    }
+    
+    func getProgress() -> Float {
+        var progress: Float = 0.0
+        progress = Float(questionCount + 1) / Float(questions.count)
+        return progress
+    }
+    
+    mutating func nextQuest() {
+        if questionCount + 1 < questions.count {
+            self.questionCount += 1
+        } else {
+            self.questionCount = 0
+        }
     }
 }
-
