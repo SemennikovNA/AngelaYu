@@ -13,6 +13,7 @@ struct Brain {
     //MARK: - Properties
     
     var questionCount = 0
+    var score = 0
     let questions = [
         Quest(q: "A slug's blood is green.", a: "True"),
         Quest(q: "Approximately one quarter of human bones are in the feet.", a: "True"),
@@ -31,13 +32,14 @@ struct Brain {
     
     //MARK: - Methods
     
-    func checkAnswer(answer userAnswer: String) -> Bool  {
+    mutating func checkAnswer(answer userAnswer: String) -> Bool {
         if userAnswer == questions[questionCount].answer {
+            self.score += 1
             return true
         } else {
             return false
         }
-    }
+}
     
     func getQuestText() -> String {
         let  text: String = questions[questionCount].question
@@ -55,6 +57,11 @@ struct Brain {
             self.questionCount += 1
         } else {
             self.questionCount = 0
+            self.score = 0
         }
+    }
+    
+    func getScore() -> Int {
+        return score
     }
 }

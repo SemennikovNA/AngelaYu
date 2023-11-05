@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     //MARK: - IBOutlet's
     
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questLabel: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
     func updateUI() {
         self.questLabel.text = brain.getQuestText()
         self.progressBar.progress = brain.getProgress()
-         
+        self.scoreLabel.text = "Score: \(brain.getScore()) "
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.trueButton.backgroundColor = .clear
             self.falseButton.backgroundColor = .clear
