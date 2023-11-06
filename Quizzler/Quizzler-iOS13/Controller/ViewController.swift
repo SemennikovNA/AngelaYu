@@ -14,9 +14,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questLabel: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet var answersButton: [UIButton]!
     
     //MARK: - Properties
     var brain = Brain()
@@ -31,20 +30,24 @@ class ViewController: UIViewController {
     
     //MARK: - Methods
     
-    func updateUI() {
+    func updateUI() { 
+        
+        answersButton.forEach { but in
+            but.setTitle(brain.setTitle()[but.tag], for: .normal)
+        }
         self.questLabel.text = brain.getQuestText()
         self.progressBar.progress = brain.getProgress()
-        self.scoreLabel.text = "Score: \(brain.getScore()) "
+        self.scoreLabel.text = "Score: \(brain.getScore())"
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.trueButton.backgroundColor = .clear
-            self.falseButton.backgroundColor = .clear
+            self.answersButton.forEach { but in
+                but.backgroundColor = .clear
+            }
         }
     }
 
     //MARK: - IBAction's
     
     @IBAction func answerButtonsPressed(_ sender: UIButton) {
-        
         guard let answer = sender.currentTitle else { return }
         let userAnswer = brain.checkAnswer(answer: answer)
         

@@ -26,39 +26,53 @@
                                 <rect key="frame" x="20" y="48" width="374" height="814"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkr-kT-rsu" userLabel="Score">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="104.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="79.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Question Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSI-li-mhO">
-                                        <rect key="frame" x="0.0" y="114.5" width="374" height="499.5"/>
+                                        <rect key="frame" x="0.0" y="89.5" width="374" height="434.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVw-Hl-IRe">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPx-8Q-HM9" userLabel="first">
+                                        <rect key="frame" x="0.0" y="534" width="374" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="Ev2-o6-z69"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" backgroundImage="Rectangle">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="answerButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rDW-vh-gfr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVw-Hl-IRe" userLabel="second">
                                         <rect key="frame" x="0.0" y="624" width="374" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="ueD-qr-2mT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="True" backgroundImage="Rectangle">
+                                        <state key="normal" backgroundImage="Rectangle">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="answerButtonsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="APN-bu-ciK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbn-vQ-GyC">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbn-vQ-GyC" userLabel="therd">
                                         <rect key="frame" x="0.0" y="714" width="374" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="fNm-VT-9Ox"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="False" backgroundImage="Rectangle">
+                                        <state key="normal" backgroundImage="Rectangle">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -91,16 +105,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="falseButton" destination="tbn-vQ-GyC" id="5Pb-ei-aOe"/>
                         <outlet property="progressBar" destination="TXm-qh-7Xg" id="gra-UN-sSf"/>
                         <outlet property="questLabel" destination="rSI-li-mhO" id="SfE-wP-gFF"/>
                         <outlet property="scoreLabel" destination="Zkr-kT-rsu" id="LQ1-1u-RWf"/>
-                        <outlet property="trueButton" destination="oVw-Hl-IRe" id="3Yh-he-UaK"/>
+                        <outletCollection property="answersButton" destination="sPx-8Q-HM9" collectionClass="NSMutableArray" id="s6W-b9-6vO"/>
+                        <outletCollection property="answersButton" destination="oVw-Hl-IRe" collectionClass="NSMutableArray" id="J0A-KW-iub"/>
+                        <outletCollection property="answersButton" destination="tbn-vQ-GyC" collectionClass="NSMutableArray" id="Pz5-A4-efZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.23188405797103" y="135.26785714285714"/>
+            <point key="canvasLocation" x="-1016" y="125"/>
         </scene>
     </scenes>
     <resources>
