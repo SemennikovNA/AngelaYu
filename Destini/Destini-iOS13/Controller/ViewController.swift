@@ -18,31 +18,38 @@ class ViewController: UIViewController {
     
     //MARK: - Properties
     
-    let story = StoryBrain()
-    let storyZeroandChoice = ["You see a fork in the road.", "Take a left", "Take a right"]
+    let storyBrain = StoryBrain()
     
     //MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        storyLabel.text = String(storyBrain.story[0].title)
+        choiceOne.setTitle(storyBrain.story[0].choice1, for: .normal)
+        choiceTwo.setTitle(storyBrain.story[0].choice2, for: .normal)
+        
         updateUI()
     }
     
     //MARK: - IB Action's
 
     @IBAction func choiceButtonPressed(_ sender: UIButton) {
+        
+        if sender.currentTitle == "Take a left" {
+            storyLabel.text = storyBrain.story[1].title
+            choiceOne.setTitle(storyBrain.story[1].choice1, for: .normal)
+            choiceTwo.setTitle(storyBrain.story[1].choice2, for: .normal)
+        } else if sender.currentTitle == "Take a right" {
+            storyLabel.text = storyBrain.story[2].title
+            choiceOne.setTitle(storyBrain.story[2].choice1, for: .normal)
+            choiceTwo.setTitle(storyBrain.story[2].choice2, for: .normal)
+        }
     }
     
     func updateUI() {
         
-        storyLabel.text = storyZeroandChoice[0]
-        
-    
-        
         // Configure button
         choiceOne.layer.cornerRadius = 20
         choiceTwo.layer.cornerRadius = 20
-        choiceOne.setTitle(storyZeroandChoice[1], for: .normal)
-        choiceTwo.setTitle(storyZeroandChoice[2], for: .normal)
     }
 }
