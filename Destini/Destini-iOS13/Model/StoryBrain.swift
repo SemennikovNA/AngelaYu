@@ -7,41 +7,61 @@
 //
 
 import Foundation
+import UIKit
 
 struct StoryBrain {
     
+    //MARK: - Properties
     
-    let story = [
-        Story(title: "You see a fork in the road.", choice1: "Take a left", choice2: "Take a right"),
-        Story(title: "You see a tiger.", choice1: "Shout for help.", choice2: "Play dead."),
-        Story(title: "You find a treasure chest.", choice1: "Open it.", choice2: "Check for traps.")
+    var choiceNumber = 0 // Переменная выбора дальнейшего хода
+    let story = [ Story(
+        title: "Одним солнечным, осенним утром, Энн решила оставить все домашние дела, взяла любимый роман и вышла в лес для уединения. Пройдя немного вглубь леса идилия Энн была нарушена, вглубине леса сидела громкая компания подростков которая устроила пикник с барбекю.",
+        cho1: "Энн не смогла пройти мимо, и сделала замечание шумной компании.", cho2: "Энн прошла мимо не сказав ни слова, но ее настроение было испорчено.", c1d: 2, c2d: 1
+    ),
+                  Story(
+                    title: "В голове Энн крутились сомнения, правильно ли она поступила, просто пройдя мимо и промолчав.",
+                    cho1: "Поразмыслив об исходе событий, Энн пришла к выводу что промолчав поступила неверно, и развернулась направившись к компании.", cho2: "Поразмыслив об исходе событий, Энн пришла к выводу что промолчав поступила верно.", c1d: 2, c2d: 3
+                  ),
+                  Story(
+                    title: "Её замечание было достаточно тактичным, а тон был вежливым.",
+                    cho1: "Просьба заключалась в том, чтобы компания вела себя тише и убрала за собой.", cho2: "Энн поделилась своими ожиданиями от этой прогулки, и попросила дать ей насладиться атмосферой осеннего леса.", c1d: 5, c2d: 4
+                  ),
+                  Story(
+                    title: "Энн решила уйти в лес глубже, где шумная компания не мешала ей наслаждаться солнечным, осенним утром.",
+                    cho1: "Ко", cho2: "нец", c1d: 0, c2d: 0
+                  ),
+                  Story(
+                    title: "Замечание было принято в штыки, Энн развернулась и ушла.",
+                    cho1: "Ко", cho2: "нец", c1d: 0, c2d: 0
+                  ),
+                  Story(
+                    title: "Компания услышала просьбу Энн и прислушалась.",
+                    cho1: "Ко", cho2: "нец", c1d: 0, c2d: 0
+                  )
     ]
     
+    //MARK: - Logic methods
     
-//    let story = [ Story(
-//        title: "Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: 'Need a ride, boy?'.",
-//        choice1: "I'll hop in. Thanks for the help!", choice2: "Better ask him if he's a murderer first.", choice1Destination: 2, choice2Destination: 1
-//    ),
-//    Story(
-//        title: "He nods slowly, unfazed by the question.",
-//        choice1: "At least he's honest. I'll climb in.", choice2: "Wait, I know how to change a tire.", choice1Destination: 2, choice2Destination: 3
-//    ),
-//    Story(
-//        title: "As you begin to drive, the stranger starts talking about his relationship with his mother. He gets angrier and angrier by the minute. He asks you to open the glovebox. Inside you find a bloody knife, two severed fingers, and a cassette tape of Elton John. He reaches for the glove box.",
-//        choice1: "I love Elton John! Hand him the cassette tape.", choice2: "It's him or me! You take the knife and stab him.", choice1Destination: 5, choice2Destination: 4
-//    ),
-//    Story(
-//        title: "What? Such a cop out! Did you know traffic accidents are the second leading cause of accidental death for most adult age groups?",
-//        choice1: "The", choice2: "End", choice1Destination: 0, choice2Destination: 0
-//    ),
-//    Story(
-//        title: "As you smash through the guardrail and careen towards the jagged rocks below you reflect on the dubious wisdom of stabbing someone while they are driving a car you are in.",
-//        choice1: "The", choice2: "End", choice1Destination: 0, choice2Destination: 0
-//    ),
-//    Story(
-//        title: "You bond with the murderer while crooning verses of 'Can you feel the love tonight'. He drops you off at the next town. Before you go he asks you if you know any good places to dump bodies. You reply: 'Try the pier.'",
-//        choice1: "The", choice2: "End", choice1Destination: 0, choice2Destination: 0
-//    )
-//    ]
+    mutating func nextStory(userChoice: String) {
+        if userChoice == story[choiceNumber].choice1 {
+            choiceNumber = story[self.choiceNumber].choice1Destination
+            
+        } else {
+            choiceNumber = story[self.choiceNumber].choice2Destination
+        }
+    }
+    
+   mutating func setTitles() -> [String] {
+       var butTitles = [String]()
+       butTitles.append(story[self.choiceNumber].choice1)
+       butTitles.append(story[self.choiceNumber].choice2)
+       return butTitles
+    }
+    
+    mutating func setLabel() -> String {
+        let label = story[choiceNumber].title
+        return label
+    }
+    
     
 }

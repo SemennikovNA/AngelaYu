@@ -28,12 +28,12 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="neW-MR-Hjp"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                <buttonConfiguration key="configuration" style="plain" title="Button" titleAlignment="center">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="choiceButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bh8-u5-uw8"/>
+                                    <action selector="choiceButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="foT-C6-j6R"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tJ-xE-3Kb">
@@ -43,15 +43,15 @@
                                     <constraint firstAttribute="height" constant="100" id="tbZ-7H-gYs"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                <buttonConfiguration key="configuration" style="plain" title="Button" titleAlignment="center">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="choiceButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k68-Zh-LwE"/>
+                                    <action selector="choiceButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FF9-bJ-gCC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1g-uO-mSh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1g-uO-mSh">
                                 <rect key="frame" x="0.0" y="83" width="414" height="427"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -92,9 +92,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="choiceOne" destination="AP2-9w-mSy" id="21D-6M-DuM"/>
-                        <outlet property="choiceTwo" destination="8tJ-xE-3Kb" id="6Ic-V2-fJ1"/>
                         <outlet property="storyLabel" destination="v1g-uO-mSh" id="FZy-vE-bOn"/>
+                        <outletCollection property="choiceButtons" destination="AP2-9w-mSy" collectionClass="NSMutableArray" id="jsa-lh-Hqd"/>
+                        <outletCollection property="choiceButtons" destination="8tJ-xE-3Kb" collectionClass="NSMutableArray" id="BKi-5o-ONm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -103,7 +103,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="958" height="1793"/>
+        <image name="background" width="249" height="348"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
