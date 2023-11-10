@@ -9,10 +9,14 @@
 import UIKit
 
 class CalculateViewController: UIViewController {
-
+    
     //MARK: - IBOutlet's
     
     @IBOutlet weak var bmiLabel: UILabel!
+    
+    //MARK: - Properties
+    
+    var bmiInt = 0
     
     //MARK: - Life cylce
     
@@ -20,15 +24,15 @@ class CalculateViewController: UIViewController {
         super.viewDidLoad()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Private methods
+    
+    private func updateUI() {
+        self.bmiLabel.text = String(bmiInt)
     }
-    */
-
+    
+    //MARK: - IBAction's
+    
+    @IBAction func recalculateButton(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
 }

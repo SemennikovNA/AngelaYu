@@ -94,7 +94,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="calculateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gid-wq-j7d"/>
-                                    <segue destination="kfb-Mg-Tzx" kind="presentation" identifier="calculate" modalPresentationStyle="fullScreen" id="maI-wo-7zs"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="JIH-Nr-5Rb" userLabel="weightslider">
@@ -153,7 +152,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="result_background" translatesAutoresizingMaskIntoConstraints="NO" id="OwB-Gr-By2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="947"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="865"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="ser-cU-ZTK">
                                 <rect key="frame" x="89" y="329.5" width="236" height="237.5"/>
@@ -179,7 +178,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibP-cv-4yW">
-                                <rect key="frame" x="20" y="821" width="374" height="36"/>
+                                <rect key="frame" x="20" y="787" width="374" height="36"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="RECALCULATE">
@@ -191,6 +190,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="recalculateButton:" destination="kfb-Mg-Tzx" eventType="touchUpInside" id="wpu-YI-u8N"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uhj-wm-fzz"/>

@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     //MARK: - IBAction's
     
     @IBAction func heightsSlide(_ sender: UISlider) {
-        self.brain.heightBrain = sender.value
+        self.brain.heightBrain = Double(sender.value)
         let height = NSString(format: "%.2f", self.brain.heightBrain)
         heightValueLabel.text = "\(height)m"
         print(self.brain.heightBrain)
@@ -38,19 +38,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func weightSlide(_ sender: UISlider) {
-        self.brain.weightBrain = sender.value
-        let weight = NSString(format: "%.2f", self.brain.weightBrain)
+        self.brain.weightBrain = Int(sender.value) 
+        let weight = String(self.brain.weightBrain)
         weightValueLabel.text = "\(weight)kg"
         print(self.brain.weightBrain)
     }
     
     
     @IBAction func calculateButtonTapped(_ sender: UIButton) {
+        let lab = brain.getBMI(height: Double(self.heightSlider.value), weight: Int(self.weightSlider.value))
         let vc = CalculateViewController()
-        let calcul = brain.getBMI(height: self.brain.heightBrain, weight: self.brain.weightBrain)
-        guard let cal = calcul as? Float else { return }
-        vc.bmiLabel.text? = String(cal)
-        present(vc, animated: true)
+        vc.modalPresentationStyle = .fullScreen
+        vc.bmiInt = lab
+        self.present(vc, animated: true)
     }
     
 }

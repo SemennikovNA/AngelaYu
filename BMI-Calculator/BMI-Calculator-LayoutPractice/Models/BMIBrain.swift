@@ -12,12 +12,12 @@ struct BMIBrain {
     
     // формула фактический вес делим на ваш рост (в метрах) в квадрате
     
-    var heightBrain: Float = 0 // Рост
-    var weightBrain: Float = 0 // Вес
+    var heightBrain: Double = 0 // Рост
+    var weightBrain: Int = 0 // Вес
     
-    func getBMI(height: Float, weight: Float) -> Float {
-        var bmi: Float = 0.0
-        bmi = weight / (height * height)
+    func getBMI(height: Double, weight: Int) -> Int {
+        var bmi: Int = 0
+        bmi = weight / Int((height * height))
         return bmi
     }
 }
