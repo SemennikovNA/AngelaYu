@@ -18,6 +18,6 @@ struct BMIBrain {
     func getBMI(height: Double, weight: Int) -> Int {
         var bmi: Int = 0
         bmi = weight / Int((height * height))
-        return bmi
+        return bmi 
     }
 }

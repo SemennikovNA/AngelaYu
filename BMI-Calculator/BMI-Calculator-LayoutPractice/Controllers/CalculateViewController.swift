@@ -12,22 +12,24 @@ class CalculateViewController: UIViewController {
     
     //MARK: - IBOutlet's
     
-    @IBOutlet weak var bmiLabel: UILabel!
+    @IBOutlet weak var bmiLabel: UILabel! 
+    @IBOutlet weak var recomendLabel: UILabel!
     
     //MARK: - Properties
     
-    var bmiInt = 0
+    var bmiInt: String?
     
     //MARK: - Life cylce
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
     }
     
     //MARK: - Private methods
     
     private func updateUI() {
-        self.bmiLabel.text = String(bmiInt)
+        self.bmiLabel.text = bmiInt
     }
     
     //MARK: - IBAction's
