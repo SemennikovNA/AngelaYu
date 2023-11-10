@@ -11,4 +11,13 @@ import Foundation
 struct BMIBrain {
     
     // формула фактический вес делим на ваш рост (в метрах) в квадрате
+    
+    var heightBrain: Float = 0 // Рост
+    var weightBrain: Float = 0 // Вес
+    
+    func getBMI(height: Float, weight: Float) -> Float {
+        var bmi: Float = 0.0
+        bmi = weight / (height * height)
+        return bmi
+    }
 }
