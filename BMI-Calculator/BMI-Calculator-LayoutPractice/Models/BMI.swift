@@ -7,14 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
 struct BMI {
     
     let height: Int
     let weight: Int
+    var bmiValue: Float
+    let colors = [UIColor.red, UIColor.green, ]
     
-    init(h: Int, w: Int) {
+    init(h: Int, w: Int, bmiV: Float) {
         self.height = h
         self.weight = w
+        self.bmiValue = bmiV
     }
 }
