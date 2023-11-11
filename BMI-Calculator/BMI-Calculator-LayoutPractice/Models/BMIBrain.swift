@@ -11,13 +11,14 @@ import Foundation
 struct BMIBrain {
     
     // формула фактический вес делим на ваш рост (в метрах) в квадрате
+    var bmi: Float = 0.0
     
-    var heightBrain: Double = 0 // Рост
-    var weightBrain: Int = 0 // Вес
+    mutating func calculateBMI(height: Float, weight: Float) {
+        self.bmi = weight / (height * height)
+    }
     
-    func getBMI(height: Double, weight: Int) -> Int {
-        var bmi: Int = 0
-        bmi = weight / Int((height * height))
-        return bmi 
+    func getBMI() -> String {
+        let value = NSString(format: "%.0f", self.bmi)
+        return String(value)
     }
 }

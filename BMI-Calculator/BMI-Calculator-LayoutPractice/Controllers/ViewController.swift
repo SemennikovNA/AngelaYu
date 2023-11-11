@@ -32,25 +32,26 @@ class ViewController: UIViewController {
     @IBAction func heightsSlide(_ sender: UISlider) {
         let height = NSString(format: "%.2f", sender.value)
         heightValueLabel.text = "\(height)m"
-        print(height)
         
     }
     
     @IBAction func weightSlide(_ sender: UISlider) {
         let weight = NSString(format: "%.0f", sender.value)
         weightValueLabel.text = "\(weight)kg"
-        print(weight)
     }
     
     
     @IBAction func calculateButtonTapped(_ sender: UIButton) {
+        let height = self.heightSlider.value
+        let weight = self.weightSlider.value
+        brain.calculateBMI(height: height, weight: weight)
         self.performSegue(withIdentifier: "goResult", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "goResult" else { return }
         let destiniVC = segue.destination as! CalculateViewController
-        destiniVC.bmiInt = String(brain.getBMI(height: Double(heightSlider.value), weight: Int(weightSlider.value)))
+        destiniVC.bmiInt = brain.getBMI()
         self.present(destiniVC, animated: true)
         
     }
