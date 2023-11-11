@@ -18,6 +18,8 @@ class CalculateViewController: UIViewController {
     //MARK: - Properties
     
     var bmiInt: String?
+    var advice: String?
+    var colors: UIColor?
     
     //MARK: - Life cylce
     
@@ -29,6 +31,9 @@ class CalculateViewController: UIViewController {
     //MARK: - Private methods
     
     private func updateUI() {
+        
+        self.view.backgroundColor = colors
+        self.recomendLabel.text = advice
         self.bmiLabel.text = bmiInt
     }
     
