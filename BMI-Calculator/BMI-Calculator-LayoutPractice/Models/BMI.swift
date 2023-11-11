@@ -11,14 +11,13 @@ import UIKit
 
 struct BMI {
     
-    let height: Int
-    let weight: Int
     var bmiValue: Float
-    let colors = [UIColor.red, UIColor.green, ]
+    var colors: UIColor
+    var advice: String
     
-    init(h: Int, w: Int, bmiV: Float) {
-        self.height = h
-        self.weight = w
+    init(bmiV: Float, col: UIColor, a: String) {
         self.bmiValue = bmiV
+        self.colors = col
+        self.advice = a
     }
 }

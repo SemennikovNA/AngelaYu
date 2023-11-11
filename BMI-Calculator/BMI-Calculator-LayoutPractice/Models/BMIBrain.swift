@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct BMIBrain {
     
@@ -14,7 +15,15 @@ struct BMIBrain {
     var bmi: BMI?
     
     mutating func calculateBMI(height: Float, weight: Float) {
-        self.bmi?.bmiValue = weight / (height * height)
+        let bmiValue = weight / (height * height)
+        
+        if bmiValue < 18.5 {
+            bmi = BMI(bmiV: bmiValue, col: .blue, a: "Eat more pies!")
+        } else if bmiValue > 18.5 && bmi!.bmiValue < 24.9 {
+            bmi = BMI(bmiV: bmiValue, col: .green, a: "Fir as a fiddle!")
+        } else if bmiValue > 24.9 {
+            bmi = BMI(bmiV: bmiValue, col: .red, a: "Eat less pies! ")
+        }
     }
     
     func getBMI() -> String {
