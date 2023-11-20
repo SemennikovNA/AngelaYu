@@ -19,12 +19,16 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var settingLabel: UILabel!
     
+    //MARK: - Properties
+    
+    var totalSum: Double = 0.0
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        totalLabel.text = "\(totalSum)"
     }
     
     //MARK: - IBAction's

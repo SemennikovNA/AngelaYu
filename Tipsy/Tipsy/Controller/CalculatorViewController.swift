@@ -19,11 +19,9 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var personCountLabel: UILabel!
     
     //MARK: - Properties
-    
-    let zeroTip = 0.0
-    let tenTip = 0.1
-    let twentyTip = 0.2
-    var stepperCount: Double = 1
+    private var stepperCount = 2.0
+    private var tipDecimal = 0.10
+    private var finalResult = 0.0
     
     //MARK: - Lifecycle
     
@@ -35,27 +33,20 @@ class CalculatorViewController: UIViewController {
     //MARK: - IBAction's
     
     @IBAction func tipChanged(_ sender: UIButton) {
-        switch sender.currentTitle {
-        case "0%":
-            zeroTipButton.isSelected = true
-            tenTipButton.isSelected = false
-            twentyTipButton.isSelected = false
-        case "10%":
-            zeroTipButton.isSelected = false
-            tenTipButton.isSelected = true
-            twentyTipButton.isSelected = false
-        case "20%":
-            zeroTipButton.isSelected = false
-            tenTipButton.isSelected = false
-            twentyTipButton.isSelected = true
-        default:
-            print("error")
-        }
+        zeroTipButton.isSelected = false
+        tenTipButton.isSelected = false
+        twentyTipButton.isSelected = false
+        sender.isSelected = true
+        
+        let title = sender.currentTitle
+        let butNumber = title?.dropLast()
+        guard let butTip = Double(butNumber!) else { return }
+        self.tipDecimal = butTip / 100
     }
     
     
     @IBAction func personCountStepper(_ sender: UIStepper) {
-        sender.minimumValue = 1
+        sender.minimumValue = 2
         sender.maximumValue = 25
         stepperCount = sender.value
         self.personCountLabel.text = "\(String(format: "%.0f", stepperCount))"
@@ -63,22 +54,29 @@ class CalculatorViewController: UIViewController {
     
     
     @IBAction func calculateButton(_ sender: UIButton) {
-        if zeroTipButton.isSelected == true {
-            print(zeroTip)
-        } else if tenTipButton.isSelected == true {
-            print(tenTip)
-        } else {
-            print(twentyTip)
-        }
-        print(stepperCount)
+        performSegue(withIdentifier: "result", sender: self)
+    }
+    
+    //MARK: - Private func
+    
+    private func calculate() -> Double {
+        let sum = sumTextField.text
+        let inputSum = Double(sum!)
+        let total = Double(inputSum!) * (1 + tipDecimal)
+        let totalSum = total / Double(stepperCount)
+        self.finalResult = totalSum
+        return finalResult
     }
     
     //MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "result" else { return }
-        let resultVC = ResultViewController()
-        present(resultVC, animated: true)
+        let destinationVC = segue.destination as! ResultViewController
+        
+        destinationVC.totalSum = finalResult
+//        destinationVC.tip = Int(tip * 100)
+//        destinationVC.split = numberOfPeople
     }
     
 }
