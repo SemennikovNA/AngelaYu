@@ -13,22 +13,25 @@ class ResultViewController: UIViewController {
     //MARK: - Properties
     
     
-
+    
     //MARK: - IBOutlet's
     
     @IBOutlet weak var totalLabel: UILabel!
-    @IBOutlet weak var settingLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     
     //MARK: - Properties
     
-    var totalSum: Double = 0.0
+    lazy var totalSum: Double = 0.0
+    lazy var peopleCount = 0
+    lazy var percentTip = 0
+    
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        totalLabel.text = "\(totalSum)"
+        //Call function's
+        setupView()
     }
     
     //MARK: - IBAction's
@@ -37,15 +40,8 @@ class ResultViewController: UIViewController {
         dismiss(animated: true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupView() {
+        totalLabel.text = "\(totalSum)"
+        infoLabel.text = "Split between \(peopleCount) people, with \(percentTip)% tip."
     }
-    */
-
 }

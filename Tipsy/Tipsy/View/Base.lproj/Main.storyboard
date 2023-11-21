@@ -295,7 +295,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="uEn-rv-PwN"/>
                     <connections>
-                        <outlet property="settingLabel" destination="HGt-bn-sCv" id="xn6-nE-6PW"/>
+                        <outlet property="infoLabel" destination="HGt-bn-sCv" id="Ozi-Rs-5Lh"/>
                         <outlet property="totalLabel" destination="uLJ-ii-hft" id="i3L-ho-0tF"/>
                     </connections>
                 </viewController>

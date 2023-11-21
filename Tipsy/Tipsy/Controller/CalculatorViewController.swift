@@ -56,27 +56,23 @@ class CalculatorViewController: UIViewController {
     
     
     @IBAction func calculateButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "result", sender: self)
-    }
-    
-    //MARK: - Private func
-    
-    private func calculate() -> Double {
         let sum = sumTextField.text
         let inputSum = Double(sum!)
         let total = Double(inputSum!) * (1 + tip)
         let totalSum = total / Double(stepperCount)
         self.finalResult = totalSum
-        return finalResult
+        print(finalResult)
+        performSegue(withIdentifier: "result", sender: self)
     }
     
     //MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "result" else { return }
-        let destinationVC = segue.destination as! ResultViewController
-        
-        destinationVC.totalSum = finalResult
+        let destVC = segue.destination as! ResultViewController
+        destVC.totalSum = finalResult
+        destVC.peopleCount = Int(self.stepperCount)
+        destVC.percentTip = Int(tip * 100)
     }
     
 }
