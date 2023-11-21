@@ -17,7 +17,7 @@
 
 
 ## Screenshots
- <img src="media/rich.png" width="273"/> <img src="media/magicball.png" width="273"/> <img src="media/dice.png" width="273"/> <img src="media/xylo.png" width="273"/> <img src="media/eggs.png" width="273"/> <img src="media/quiz.png" width="273"/> <img src="media/destini.png" width="273"/> <img src="media/bmi.png" width="273"/>
+ <img src="media/rich.png" width="273"/> <img src="media/magicball.png" width="273"/> <img src="media/dice.png" width="273"/> <img src="media/xylo.png" width="273"/> <img src="media/eggs.png" width="273"/> <img src="media/quiz.png" width="273"/> <img src="media/destini.png" width="273"/> <img src="media/bmi.png" width="273"/> <img src="media/tip.png" width="273"/>
 
 
 
