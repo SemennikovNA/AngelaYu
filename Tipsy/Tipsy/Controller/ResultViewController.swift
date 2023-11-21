@@ -8,11 +8,7 @@
 
 import UIKit
 
-class ResultViewController: UIViewController {
-    
-    //MARK: - Properties
-    
-    
+final class ResultViewController: UIViewController {
     
     //MARK: - IBOutlet's
     

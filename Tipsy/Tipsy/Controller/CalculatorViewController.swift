@@ -2,13 +2,13 @@
 //  CalculatorViewController.swift
 //  Tipsy
 //
-//  Created by Angela Yu on 09/09/2019.
+//  Created by Nikita on 20.11.2023.
 //  Copyright © 2019 The App Brewery. All rights reserved.
 //
 
 import UIKit
 
-class CalculatorViewController: UIViewController {
+final class CalculatorViewController: UIViewController {
     
     //MARK: - IB Outlet's
     
@@ -27,10 +27,9 @@ class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
-    //MARK: - IBAction's
+    //MARK: - IB Action's
     
     @IBAction func tipChanged(_ sender: UIButton) {
         sumTextField.endEditing(true)
@@ -61,7 +60,6 @@ class CalculatorViewController: UIViewController {
         let total = Double(inputSum!) * (1 + tip)
         let totalSum = total / Double(stepperCount)
         self.finalResult = totalSum
-        print(finalResult)
         performSegue(withIdentifier: "result", sender: self)
     }
     
@@ -74,6 +72,4 @@ class CalculatorViewController: UIViewController {
         destVC.peopleCount = Int(self.stepperCount)
         destVC.percentTip = Int(tip * 100)
     }
-    
 }
-
