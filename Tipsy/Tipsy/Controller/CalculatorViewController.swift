@@ -20,7 +20,7 @@ class CalculatorViewController: UIViewController {
     
     //MARK: - Properties
     private var stepperCount = 2.0
-    private var tipDecimal = 0.10
+    private var tip = 0.10
     private var finalResult = 0.0
     
     //MARK: - Lifecycle
@@ -33,15 +33,17 @@ class CalculatorViewController: UIViewController {
     //MARK: - IBAction's
     
     @IBAction func tipChanged(_ sender: UIButton) {
+        sumTextField.endEditing(true)
+        
         zeroTipButton.isSelected = false
         tenTipButton.isSelected = false
         twentyTipButton.isSelected = false
         sender.isSelected = true
         
-        let title = sender.currentTitle
-        let butNumber = title?.dropLast()
-        guard let butTip = Double(butNumber!) else { return }
-        self.tipDecimal = butTip / 100
+        let buttonTitle = sender.currentTitle!
+        let buttonTitleMinusPercentSign =  String(buttonTitle.dropLast())
+        let buttonTitleAsANumber = Double(buttonTitleMinusPercentSign)!
+        tip = buttonTitleAsANumber / 100
     }
     
     
@@ -62,7 +64,7 @@ class CalculatorViewController: UIViewController {
     private func calculate() -> Double {
         let sum = sumTextField.text
         let inputSum = Double(sum!)
-        let total = Double(inputSum!) * (1 + tipDecimal)
+        let total = Double(inputSum!) * (1 + tip)
         let totalSum = total / Double(stepperCount)
         self.finalResult = totalSum
         return finalResult
@@ -75,8 +77,6 @@ class CalculatorViewController: UIViewController {
         let destinationVC = segue.destination as! ResultViewController
         
         destinationVC.totalSum = finalResult
-//        destinationVC.tip = Int(tip * 100)
-//        destinationVC.split = numberOfPeople
     }
     
 }
