@@ -9,6 +9,10 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
+    
+    //MARK: - Properties
+    
+    var apiManager = ApiManager()
 
     //MARK: - IB Outlet's
     
@@ -45,6 +49,8 @@ extension WeatherViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let city = searchTextField.text else { return }
+        apiManager.getParametrs(city: city)
         searchTextField.text = ""
     }
     
