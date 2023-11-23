@@ -13,6 +13,7 @@ class WeatherViewController: UIViewController {
     //MARK: - Properties
     
     var apiManager = ApiManager()
+    var weatherManage: WeatherModel?
 
     //MARK: - IB Outlet's
     
@@ -27,6 +28,22 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         searchTextField.delegate = self
+        
+        //Call function's
+        DispatchQueue.main.async {
+            self.setupUI()
+        }
+    }
+    
+    //MARK: - Private methods
+    
+    private func setupUI() {
+        guard let image = weatherManage?.imageName else { return }
+        guard let name = weatherManage?.city else { return }
+        guard let temp = weatherManage?.temperatureString else { return }
+        conditionImageView.image = UIImage(named: image)
+        temperatureLabel.text = temp
+        cityLabel.text = name
     }
     
     //MARK: - IB Action's

@@ -32,14 +32,19 @@ class ApiManager {
         
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
-            if error != nil  {
-                 print(error!)
+            if error != nil {
                 return
             }
             guard let data = data else { return }
-            let decodeWeather = try? JSONDecoder().decode(WeatherData.self, from: data)
-            if let decode = decodeWeather {
-                print("Мы сейчас в \(decode.name), \(decode.weather[1])")
+            do {
+                let decodeWeather = try? JSONDecoder().decode(WeatherData.self, from: data)
+                if let decodeData = decodeWeather {
+                    let cityName = decodeData.name
+                    let temp = decodeData.main.temp
+                    let weatherId = decodeData.weather[0].id
+                    let currentWeather = WeatherModel(city: cityName, temp: temp, id: weatherId)
+                    print(currentWeather.temperatureString)
+                }
             }
         }
         task.resume()
