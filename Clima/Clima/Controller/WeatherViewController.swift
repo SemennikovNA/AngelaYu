@@ -12,8 +12,7 @@ class WeatherViewController: UIViewController {
     
     //MARK: - Properties
     
-    var apiManager = ApiManager()
-    var weatherManage: WeatherModel?
+    var apiManager = WeatherManager()
 
     //MARK: - IB Outlet's
     
@@ -26,26 +25,13 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        // Delegate
         searchTextField.delegate = self
-        
-        //Call function's
-        DispatchQueue.main.async {
-            self.setupUI()
-        }
+        apiManager.delegate = self
+    
     }
-    
-    //MARK: - Private methods
-    
-    private func setupUI() {
-        guard let image = weatherManage?.imageName else { return }
-        guard let name = weatherManage?.city else { return }
-        guard let temp = weatherManage?.temperatureString else { return }
-        conditionImageView.image = UIImage(named: image)
-        temperatureLabel.text = temp
-        cityLabel.text = name
-    }
-    
+
     //MARK: - IB Action's
     
     @IBAction func findButton(_ sender: UIButton) {
@@ -78,5 +64,22 @@ extension WeatherViewController: UITextFieldDelegate {
             textField.placeholder = "Type something"
             return false
         }
+    }
+}
+
+extension WeatherViewController: WeatherDelegate {
+    
+    //MARK: Weather delegate methods
+    
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+        DispatchQueue.main.async {
+            self.cityLabel.text = weather.city
+            self.temperatureLabel.text = weather.temperatureString
+            self.conditionImageView.image = UIImage(named: weather.imageName)
+        }
+    }
+    
+    func didFailWithError(_ error: Error) {
+        print(error)
     }
 }
