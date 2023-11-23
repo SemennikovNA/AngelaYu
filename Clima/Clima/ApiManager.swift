@@ -32,10 +32,15 @@ class ApiManager {
         
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
-//            guard error != nil else { return }
+            if error != nil  {
+                 print(error!)
+                return
+            }
             guard let data = data else { return }
-            let dataString = String(data: data, encoding: .utf8)
-            print("\(String(describing: dataString))")
+            let decodeWeather = try? JSONDecoder().decode(WeatherData.self, from: data)
+            if let decode = decodeWeather {
+                print("Мы сейчас в \(decode.name), \(decode.weather[1])")
+            }
         }
         task.resume()
     }
