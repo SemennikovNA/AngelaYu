@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherViewController: UIViewController {
     
     //MARK: - Properties
     
-    var apiManager = WeatherManager()
+    var weatherManager = WeatherManager()
+    let locationManager = CLLocationManager()
+    
 
     //MARK: - IB Outlet's
     
@@ -25,10 +28,15 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         // Delegate
         searchTextField.delegate = self
-        apiManager.delegate = self
+        weatherManager.delegate = self
+        locationManager.delegate = self
+    
+        // Call function's
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     
     }
 
@@ -37,6 +45,12 @@ class WeatherViewController: UIViewController {
     @IBAction func findButton(_ sender: UIButton) {
         searchTextField.endEditing(true)
     }
+    
+    
+    @IBAction func locationButton(_ sender: UIButton) {
+        locationManager.requestLocation()
+    }
+    
 }
 
     //MARK: - Extension
@@ -53,12 +67,13 @@ extension WeatherViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let city = searchTextField.text else { return }
-        apiManager.getParametrs(city: city)
+        weatherManager.getCityName(city: city)
         searchTextField.text = ""
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != "" {             return true
+        if textField.text != "" {             
+            return true
         } else {
             textField.placeholder = "Type something"
             return false
@@ -82,3 +97,22 @@ extension WeatherViewController: WeatherDelegate {
         print(error)
     }
 }
+
+extension WeatherViewController: CLLocationManagerDelegate {
+    
+    //MARK: Core location delegate methods
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let location = locations.last else { return }
+        locationManager.stopUpdatingLocation()
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        self.weatherManager.getCoordinate(lat: latitude, lon: longitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+}
+

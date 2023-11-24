@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 
     //MARK: - Protocol's
@@ -21,14 +22,20 @@ struct WeatherManager {
     //MARK: - Properties
     
     let apiKey = "67c166905641c3fbe153816326225090"
-    let url = "https://api.openweathermap.org/data/2.5/weather?units=metric"
+    let url = "https://api.openweathermap.org/data/2.5/weather?units=metric&lang=ru"
     var delegate: WeatherDelegate?
     
     //MARK: - Methods
     
     ///Gets the URL parameter as the city name
-    func getParametrs(city: String) {
-        let urlString = "\(url)&appid=\(apiKey)&q=\(city)&lang=ru"
+    func getCityName(city: String) {
+        let urlString = "\(url)&appid=\(apiKey)&q=\(city)"
+        requestWeather(url: urlString)
+    }
+    
+    ///Get the URL parameter as the coordinate user
+    func getCoordinate(lat: CLLocationDegrees, lon: CLLocationDegrees) {
+        let urlString = "\(url)&appid=\(apiKey)&lat=\(lat)&lon=\(lon)"
         requestWeather(url: urlString)
     }
     
