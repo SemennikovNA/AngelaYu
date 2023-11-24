@@ -58,8 +58,7 @@ extension WeatherViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != "" {
-            return true
+        if textField.text != "" {             return true
         } else {
             textField.placeholder = "Type something"
             return false
@@ -75,7 +74,7 @@ extension WeatherViewController: WeatherDelegate {
         DispatchQueue.main.async {
             self.cityLabel.text = weather.city
             self.temperatureLabel.text = weather.temperatureString
-            self.conditionImageView.image = UIImage(named: weather.imageName)
+            self.conditionImageView.image = UIImage(systemName: weather.imageName)
         }
     }
     
