@@ -36,6 +36,7 @@ struct WeatherManager {
     ///Get the URL parameter as the coordinate user
     func getCoordinate(lat: CLLocationDegrees, lon: CLLocationDegrees) {
         let urlString = "\(url)&appid=\(apiKey)&lat=\(lat)&lon=\(lon)"
+        
         requestWeather(url: urlString)
     }
     
