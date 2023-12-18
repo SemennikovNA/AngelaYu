@@ -2,7 +2,7 @@ PODS:
   - CLTypingLabel (0.4.0)
 
 DEPENDENCIES:
-  - CLTypingLabel
+  - CLTypingLabel (~> 0.4.0)
 
 SPEC REPOS:
   trunk:
@@ -11,6 +11,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   CLTypingLabel: 95a7d1faf7e3d1d952cd11cb0491d17d80c50934
 
-PODFILE CHECKSUM: 7f34080d1ba5bb9f961fd28ccfeadb2c44dbac6d
+PODFILE CHECKSUM: fc4ff8ebef4068d8ed5d1b031f5397b0ec7aa965
 
 COCOAPODS: 1.13.0
