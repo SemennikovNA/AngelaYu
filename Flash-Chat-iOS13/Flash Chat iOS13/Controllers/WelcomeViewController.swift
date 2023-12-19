@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class WelcomeViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,14 +16,13 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = " "
         
-       
         // Call function's
         setupView()
     }
     
     private func setupView() {
         var charIndex: Double = 0
-        let textForTitle = "⚡️ Flash chat"
+        let textForTitle = K.appName
         for letter in textForTitle {
             Timer.scheduledTimer(withTimeInterval: 0.1 *  charIndex, repeats: false) { timer in
                 self.titleLabel.text?.append(letter)

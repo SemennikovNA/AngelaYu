@@ -14,13 +14,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     @IBAction func loginPressed(_ sender: UIButton) {
         guard let email = emailTextfield.text, let pass = passwordTextfield.text else { return }
         
-        Auth.auth().signIn(withEmail: email, password: pass) { [weak self] authResult, error in
-            guard let strongSelf = self else { return }
-            self!.performSegue(withIdentifier: "login", sender: self)
+        Auth.auth().signIn(withEmail: email, password: pass) { authResult, error in
+            if let error = error {
+                print(error)
+            } else {
+                self.performSegue(withIdentifier: K.login, sender: self)
+            }
         }
     }
 }

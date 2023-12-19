@@ -14,6 +14,10 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     @IBAction func registerPressed(_ sender: UIButton) {
         
         guard let email = emailTextfield.text, let pass = passwordTextfield.text else { return }
@@ -21,9 +25,8 @@ class RegisterViewController: UIViewController {
             if let error = error {
                 print(error)
             } else {
-                self.performSegue(withIdentifier: "register", sender: self) 
+                self.performSegue(withIdentifier: K.register, sender: self) 
             }
         }
     }
-    
 }
