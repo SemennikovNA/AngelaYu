@@ -32,7 +32,10 @@ class ChatViewController: UIViewController {
     }
     
     func loadMessages() {
-        db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
+        db.collection(K.FStore.collectionName)
+            .order(by: K.FStore.dateField)
+            .addSnapshotListener({ querySnapshot, error in
+            self.messages = []
             if error != nil {
                 print("Warning \(String(describing: error))")
             } else {
@@ -42,20 +45,21 @@ class ChatViewController: UIViewController {
                     guard let sender = data[K.FStore.senderField] as? String, let message = data[K.FStore.bodyField] as? String else { return }
                     let newMessage = Message(person: sender, message: message)
                     self.messages.append(newMessage)
-                    
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                 }
             }
-        }
+        })
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
-        guard let person = Auth.auth().currentUser?.email, let message = messageTextfield.text else { return }
+        guard let person = Auth.auth().currentUser?.email, 
+                let message = messageTextfield.text else { return }
         db.collection(K.FStore.collectionName).addDocument(data: [
             K.FStore.senderField: person,
-            K.FStore.bodyField: message
+            K.FStore.bodyField: message,
+            K.FStore.dateField: Date().timeIntervalSince1970
         ]) { error in
             if error != nil {
                 print("Mistake save data \(String(describing: error))")
