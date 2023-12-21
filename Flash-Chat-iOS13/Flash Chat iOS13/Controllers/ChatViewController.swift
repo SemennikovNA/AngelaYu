@@ -28,6 +28,7 @@ class ChatViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.allowsSelection = false
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
     
@@ -46,7 +47,9 @@ class ChatViewController: UIViewController {
                     let newMessage = Message(person: sender, message: message)
                     self.messages.append(newMessage)
                     DispatchQueue.main.async {
+                        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
                         self.tableView.reloadData()
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                     }
                 }
             }
@@ -64,10 +67,12 @@ class ChatViewController: UIViewController {
             if error != nil {
                 print("Mistake save data \(String(describing: error))")
             } else {
+                DispatchQueue.main.async {
+                    self.messageTextfield.text = " "
+                }
                 print("Data is saved")
             }
         }
-        messageTextfield.text = " "
     }
 
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
@@ -88,10 +93,21 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         return messages.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let message = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
-        cell.messageLabel.text = messages[indexPath.row].message
+        cell.messageLabel.text = message.message
+        if message.person == Auth.auth().currentUser?.email {
+            cell.avatarSecondPerson.isHidden = true
+            cell.avatarPerson.isHidden = false
+            cell.cellView.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+            cell.messageLabel.textColor = UIColor(named: K.BrandColors.purple)
+        } else {
+            cell.avatarPerson.isHidden = true
+            cell.avatarSecondPerson.isHidden = false
+            cell.cellView.backgroundColor = UIColor(named: K.BrandColors.purple)
+            cell.messageLabel.textColor = UIColor(named: K.BrandColors.lightPurple)
+        }
         return cell
     }
 }

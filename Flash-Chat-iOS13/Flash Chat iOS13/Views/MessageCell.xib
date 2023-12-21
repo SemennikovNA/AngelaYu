@@ -18,14 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="429" height="78"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PmI-8H-5qa">
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PmI-8H-5qa">
                         <rect key="frame" x="10" y="10" width="409" height="60"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YouAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="55W-x1-CdU">
+                                <rect key="frame" x="0.0" y="10" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="c6M-YS-CbE"/>
+                                    <constraint firstAttribute="width" constant="40" id="eiD-S9-5nl"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qrh-5V-VXN">
-                                <rect key="frame" x="0.0" y="0.0" width="349" height="60"/>
+                                <rect key="frame" x="60" y="0.0" width="289" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOr-zc-cuy">
-                                        <rect key="frame" x="10" y="10" width="329" height="40"/>
+                                        <rect key="frame" x="10" y="10" width="269" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -65,6 +72,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarPerson" destination="TVo-Af-hPC" id="XWd-bS-WZa"/>
+                <outlet property="avatarSecondPerson" destination="55W-x1-CdU" id="5Ha-rE-qPP"/>
                 <outlet property="cellView" destination="Qrh-5V-VXN" id="Kl2-Qi-5Fe"/>
                 <outlet property="messageLabel" destination="fOr-zc-cuy" id="FhO-4h-jiN"/>
             </connections>
@@ -73,6 +81,7 @@
     </objects>
     <resources>
         <image name="MeAvatar" width="36" height="36"/>
+        <image name="YouAvatar" width="36" height="36"/>
         <namedColor name="BrandPurple">
             <color red="0.67500001192092896" green="0.43500000238418579" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
